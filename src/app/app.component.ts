@@ -46,11 +46,14 @@ export class AppComponent {
   }
 
   deleteTodo(todo) {
-    this.dataService.deleteTodo(todo.id)
-      .subscribe(response => {
-        let index = this.todos.indexOf(todo);
-        this.todos.splice(index, 1);
-      });
+    if(confirm('Are you sure want to remove this todo?'))
+    {
+      this.dataService.deleteTodo(todo.id)
+        .subscribe(response => {
+          let index = this.todos.indexOf(todo);
+          this.todos.splice(index, 1);
+        });
+    }
   }
 
   editTodo(id: number) {
